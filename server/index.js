@@ -4,8 +4,27 @@ const express = require('express'),
   app = express(),
   bodyParser = require('body-parser')
 
-let id = 1;
-let data = [];
+let id = 2;
+let data = [
+  {
+    id: 1,
+    participants: [
+      {
+        name: null,
+        week: {
+          Monday: [],
+          Tuesday: [],
+          Wednesday: [],
+          Thursday: [],
+          Friday: [],
+          Saturday: [],
+          Sunday: []
+        }
+      }
+    ],
+    dateStart: null
+  }
+];
 
 function addShedule(id){
   let element = {
@@ -40,13 +59,17 @@ app.get('/api/shedule/:id', (req, res) => {
 })
 
 app.post('/api/shedule/:id', (req, res) => {
-  const { id, names, colors } = req.params
+  const { id, participants } = req.body.params
+
   //checking
   if(!id){
     res.send('nothing')
   }
   //result  
-
+  console.log(id)
+  console.log(participants)
+  //write to data file
+  
 })
 
 

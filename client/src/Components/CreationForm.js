@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 
-export default function creationForm({ change = 2, currentValue, save }) {
+export default function creationForm({ changeValue, currentValue, save }) {
+
+  function handleChange(event) {
+    changeValue(event.target.value);
+  }
   return (
     <>
       <FormControl component="fieldset">
@@ -14,7 +18,7 @@ export default function creationForm({ change = 2, currentValue, save }) {
           aria-label="position"
           name="position"
           value={currentValue}
-          onChange={change}
+          onChange={handleChange}
           row
         >
           <FormControlLabel
@@ -50,7 +54,7 @@ export default function creationForm({ change = 2, currentValue, save }) {
         </RadioGroup>
       </FormControl>
       {currentValue > 1 ? (
-        <Button onClick={() => save(false)}>Save</Button>
+        <Button onClick={() => save(true)}>Save</Button>
       ) : (
         <h2>Choose number</h2>
       )}
